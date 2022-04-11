@@ -1,6 +1,6 @@
 import Form from './components/ConfirmCodeForm'
 
-function App() {
+const App = () => {
   return (
   <Form/>
   );

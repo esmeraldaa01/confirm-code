@@ -36,14 +36,15 @@ const Text = styled.p`
   margin-top: 10px;
 `;
 const Small = styled.h5`
-  width: 55%;
-  height: 10%;
-  background-color: #e8e8e8;
+  color: gray;
+  font-size: small;
+  font-weight: 550;
+  background-color: rgba(192,192,192,0.1);;
+  padding: 10px;
+  background-color:rgba(192,192,192,0.3);
   border-radius: 5px;
-  color: grey;
-  padding: 15px 10px 10px 5px;
-  margin-top: 30px;
-  font-family: "arial";
+  line-height: 1.6;
+  margin-top: 40px;
 `;
 
 const App = () => {
@@ -84,8 +85,8 @@ const App = () => {
                 })}
             </Inputs>
             <Small>
-                This is design only. We didn't actually send you an email as we don't
-                have your email , right ?
+                This is design only. We didn't actually send you an email as
+               <br/> we don't have your email , right ?
             </Small>
         </Wrapper>
     );
