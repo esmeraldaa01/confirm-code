@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "antd";
+import './ConfirmCode.css'
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -51,12 +52,12 @@ const App = () => {
     const handleFocus = (e, id) => {
         const copyCode = [...code];
 
-        if (e.target.value === "") {
+        if(e.target.value){
+            copyCode[id] = e.target.value;
+            if(e.target.nextSibling) e.target.nextSibling.focus();
+        }else if(e.target.value === "") {
             copyCode[id] = 0;
             if (e.target.previousSibling && id != 0) e.target.previousSibling.focus();
-        } else {
-            if (e.target.nextSibling) e.target.nextSibling.focus();
-            copyCode[id] = e.target.value;
         }
 
         setCode(copyCode);
@@ -71,102 +72,42 @@ const App = () => {
                 Enter the code below to confirm your email adress
             </Text>
             <Inputs>
-                <Input
-                    style={{
-                        fontSize: "50px",
-                        width: "70px",
-                        color: "grey",
-                        height: "120px",
-                        margin: "10px",
-                        textAlign: "center",
-                        border: "1px solid lightgrey",
-                        borderRadius: "5px",
-                    }}
-                    type={"tel"}
-                    value={code[0]}
-                    onChange={(e) => handleFocus(e, 0)}
-                    maxLength={1}
-                ></Input>
-                <Input
-                    style={{
-                        fontSize: "50px",
-                        width: "70px",
-                        color: "grey",
-                        height: "120px",
-                        margin: "10px",
-                        textAlign: "center",
-                        border: "1px solid lightgrey",
-                        borderRadius: "5px",
-                    }}
-                    type={"tel"}
-                    value={code[1]}
-                    onChange={(e) => handleFocus(e, 1)}
-                    maxLength={1}
-                ></Input>
-                <Input
-                    style={{
-                        fontSize: "50px",
-                        width: "70px",
-                        color: "grey",
-                        height: "120px",
-                        margin: "10px",
-                        textAlign: "center",
-                        border: "1px solid lightgrey",
-                        borderRadius: "5px",
-                    }}
-                    type={"tel"}
-                    value={code[2]}
-                    onChange={(e) => handleFocus(e, 2)}
-                    maxLength={1}
-                ></Input>
-                <Input
-                    style={{
-                        fontSize: "50px",
-                        width: "70px",
-                        color: "grey",
-                        height: "120px",
-                        margin: "10px",
-                        textAlign: "center",
-                        border: "1px solid lightgrey",
-                        borderRadius: "5px",
-                    }}
-                    type={"tel"}
-                    value={code[3]}
-                    onChange={(e) => handleFocus(e, 3)}
-                    maxLength={1}
-                ></Input>
-                <Input
-                    style={{
-                        fontSize: "50px",
-                        width: "70px",
-                        color: "grey",
-                        height: "120px",
-                        margin: "10px",
-                        textAlign: "center",
-                        border: "1px solid lightgrey",
-                        borderRadius: "5px",
-                    }}
-                    type={"tel"}
-                    value={code[4]}
-                    onChange={(e) => handleFocus(e, 4)}
-                    maxLength={1}
-                ></Input>
-                <Input
-                    style={{
-                        fontSize: "50px",
-                        width: "70px",
-                        color: "grey",
-                        height: "120px",
-                        margin: "10px",
-                        textAlign: "center",
-                        border: "1px solid lightgrey",
-                        borderRadius: "5px",
-                    }}
-                    type={"tel"}
-                    value={code[5]}
-                    onChange={(e) => handleFocus(e, 5)}
-                    maxLength={1}
-                ></Input>
+                <Input className='input'
+                type={"tel"}
+                value={code[0]}
+                        onChange={(e)=> handleFocus(e,0)}
+                        maxLength={1}
+                />
+                <Input className='input'
+                        type={"tel"}
+                        value={code[1]}
+                        onChange={(e)=> handleFocus(e,1)}
+                        maxLength={1}
+                />
+                <Input  className='input'
+                        type={"tel"}
+                        value={code[2]}
+                        onChange={(e)=> handleFocus(e,2)}
+                        maxLength={1}
+                />
+                <Input  className='input'
+                        type={"tel"}
+                        value={code[3]}
+                        onChange={(e)=> handleFocus(e,3)}
+                        maxLength={1}
+                />
+                <Input  className='input'
+                        type={"tel"}
+                        value={code[4]}
+                        onChange={(e)=> handleFocus(e,4)}
+                        maxLength={1}
+                />
+                <Input  className='input'
+                        type={"tel"}
+                        value={code[5]}
+                        onChange={(e)=> handleFocus(e,5)}
+                        maxLength={1}
+                />
             </Inputs>
             <Small>
                 This is design only. We didn't actually send you an email as we don't
