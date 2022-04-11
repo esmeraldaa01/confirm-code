@@ -54,15 +54,15 @@ const [index , setIndex ] = useState(0);
 
     const handleFocus = (e) => {
         const copy = [...code]
-            if(e.target.value) {
-                copy[index] = e.target.value;
-              document.getElementById(index).focus()
-               if(index < code.length - 1) setIndex(prev => prev + 1);
-                console.log(index)
-            }else if(e.target.value === ''){
-            copy[index] = 0;
-            document.getElementById(index).focus()
-            if(index === code.length - 1)  setIndex(prev => prev - 1);
+        if(e.target.value && index < code.length - 1 ) {
+            copy[index] = e.target.value;
+           e.target.code[index].focus()
+            setIndex(prev => prev + 1);
+            console.log(index)
+        }else if(e.target.value === '' && index === code.length - 1){
+            copy[code.length - 1] = 0;
+            e.target.code[index].focus()
+            setIndex(prev => prev - 1);
             console.log(index)
         }
         // setCode(copy)
@@ -82,7 +82,7 @@ const [index , setIndex ] = useState(0);
                         <Input
                             className='input'
                                type={"tel"}
-                            id={index}
+                            key={index}
                                value={cod}
                                onChange={(e)=> handleFocus(e)}
                                maxLength={1}
