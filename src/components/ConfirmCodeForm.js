@@ -47,7 +47,7 @@ const Small = styled.h5`
 `;
 
 const App = () => {
-    const [code, setCode] = useState([]);
+    const [code, setCode] = useState(new Array(6).fill(""));
 
     const handleFocus = (e, id) => {
         const copyCode = [...code];
@@ -72,42 +72,16 @@ const App = () => {
                 Enter the code below to confirm your email adress
             </Text>
             <Inputs>
-                <Input className='input'
-                type={"tel"}
-                value={code[0]}
-                        onChange={(e)=> handleFocus(e,0)}
-                        maxLength={1}
-                />
-                <Input className='input'
-                        type={"tel"}
-                        value={code[1]}
-                        onChange={(e)=> handleFocus(e,1)}
-                        maxLength={1}
-                />
-                <Input  className='input'
-                        type={"tel"}
-                        value={code[2]}
-                        onChange={(e)=> handleFocus(e,2)}
-                        maxLength={1}
-                />
-                <Input  className='input'
-                        type={"tel"}
-                        value={code[3]}
-                        onChange={(e)=> handleFocus(e,3)}
-                        maxLength={1}
-                />
-                <Input  className='input'
-                        type={"tel"}
-                        value={code[4]}
-                        onChange={(e)=> handleFocus(e,4)}
-                        maxLength={1}
-                />
-                <Input  className='input'
-                        type={"tel"}
-                        value={code[5]}
-                        onChange={(e)=> handleFocus(e,5)}
-                        maxLength={1}
-                />
+                {code.map((cod , i) => {
+                    return (
+                        <Input className='input'
+                               type={"tel"}
+                               value={cod}
+                               onChange={(e)=> handleFocus(e,i)}
+                               maxLength={1}
+                        />
+                    )
+                })}
             </Inputs>
             <Small>
                 This is design only. We didn't actually send you an email as we don't
