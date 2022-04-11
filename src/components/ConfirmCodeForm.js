@@ -55,10 +55,10 @@ const App = () => {
 
         if(e.target.value){
             copyCode[id] = e.target.value;
-            if(e.target.nextSibling) e.target.nextSibling.focus();
+            document.getElementById(id < code.length - 1 ? id + 1 : code.length -1  ).focus()
         }else if(e.target.value === "") {
             copyCode[id] = 0;
-            if (e.target.previousSibling && id != 0) e.target.previousSibling.focus();
+            document.getElementById( id !== 0 ? id - 1 : id).focus()
         }
 
         setCode(copyCode);
@@ -75,7 +75,9 @@ const App = () => {
             <Inputs>
                 {code.map((cod , i) => {
                     return (
-                        <Input className='input'
+                        <Input
+                            id={i}
+                            className='input'
                                type={"tel"}
                                value={cod}
                                onChange={(e)=> handleFocus(e,i)}
