@@ -54,15 +54,18 @@ const [index , setIndex ] = useState(0);
 
     const handleFocus = (e) => {
         const copy = [...code]
+
         if(e.target.value && index < code.length) {
             copy[index] = e.target.value;
+            document.getElementById(`${index}`).focus()
             setIndex(index + 1);
         }else if(index === code.length){
             if(e.target.value === '') copy[code.length] = 0;
+            document.getElementById(`${index}`).focus()
             setIndex(index - 1);
         }
+
         setCode(copy)
-        document.getElementById(`${index}`).focus()
     };
 
     return (
