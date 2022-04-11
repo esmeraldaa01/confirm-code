@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input } from "antd";
 import './ConfirmCode.css'
 import styled from "styled-components";
+import {focus} from "@testing-library/user-event/dist/focus";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -49,19 +50,22 @@ const Small = styled.h5`
 
 const App = () => {
     const [code, setCode] = useState(new Array(6).fill(""));
+const [index , setIndex ] = useState(0);
 
-    const handleFocus = (e, id) => {
-        const copyCode = [...code];
-
-        if(e.target.value){
-            copyCode[id] = e.target.value;
-            document.getElementById(id < code.length - 1 ? id + 1 : code.length -1  ).focus()
-        }else if(e.target.value === "") {
-            copyCode[id] = 0;
-            document.getElementById( id !== 0 ? id - 1 : id).focus()
+    const handleFocus = (e) => {
+        const copy = [...code]
+            if(e.target.value) {
+                copy[index] = e.target.value;
+              document.getElementById(index).focus()
+               if(index < code.length - 1) setIndex(prev => prev + 1);
+                console.log(index)
+            }else if(e.target.value === ''){
+            copy[index] = 0;
+            document.getElementById(index).focus()
+            if(index === code.length - 1)  setIndex(prev => prev - 1);
+            console.log(index)
         }
-
-        setCode(copyCode);
+        // setCode(copy)
     };
 
     return (
@@ -73,14 +77,14 @@ const App = () => {
                 Enter the code below to confirm your email adress
             </Text>
             <Inputs>
-                {code.map((cod , i) => {
+                {code.map((cod ) => {
                     return (
                         <Input
-                            id={i}
                             className='input'
                                type={"tel"}
+                            id={index}
                                value={cod}
-                               onChange={(e)=> handleFocus(e,i)}
+                               onChange={(e)=> handleFocus(e)}
                                maxLength={1}
                         />
                     )
